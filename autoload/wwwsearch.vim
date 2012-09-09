@@ -124,7 +124,9 @@ endfunction
 
 function! wwwsearch#cmd_Wwwsearch_complete(arglead, cmdline, cursorpos)  "{{{2
   " FIXME: context-aware completion
-  return map(sort(keys(s:search_engines)), '"-" . v:val')
+  return filter(map(sort(keys(s:search_engines)), '"-" . v:val')
+                \ , 'stridx(v:val, a:arglead) == 0' )
+
 endfunction
 
 
